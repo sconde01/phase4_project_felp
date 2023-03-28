@@ -10,11 +10,11 @@ class FoodTrucksController < ApplicationController
     render json: foodtruck
   end
 
-  def create
-    # byebug 
-    foodtruck = @current_user.food_trucks.create!(foodtruck_params)
-    render json: foodtruck, status: :created
-  end
+  # def create
+  #   # byebug 
+  #   foodtruck = @current_user.food_trucks.create!(foodtruck_params)
+  #   render json: foodtruck, status: :created
+  # end
 
   private
 
@@ -22,10 +22,5 @@ class FoodTrucksController < ApplicationController
     # params.require(:name).permit(:address, :cuisine, :image_url)
     params.permit(:name, :address, :cuisine, :image_url)
   end
-
-  # def authorize
-  #   @current_user = User.find_by(id: session[:user_id])
-  #   render json: { errors: ["Not authorized"] }, status: :unauthorized unless @current_user
-  # end
 
 end

@@ -17,6 +17,7 @@ const FoodTruckProvider = ({ children }) => {
   const addFoodTruck = foodtruck => {
     setFoodTrucks([...foodtrucks, foodtruck]);
   }
+
   
   return <FoodTruckContext.Provider value={{ foodtrucks, addFoodTruck }}>{ children }</FoodTruckContext.Provider>
 

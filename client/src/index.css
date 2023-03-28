@@ -12,9 +12,6 @@ code {
     monospace;
 }
 
-nav {
-  background-color: white;
-}
 
 nav a {
   display: inline-block;
@@ -25,7 +22,6 @@ nav a {
   color: rgb(8, 8, 8);
   border-bottom: 2px solid #58b87d;
   transition: 0.1s;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-style: normal;
   
 }
@@ -33,7 +29,7 @@ nav a {
 nav a:hover,
 nav a:active {
   color: rgb(247, 246, 246);
-  border-bottom: 2px solid rgb(140, 96, 140);
+  border-bottom: 2px solid rgb(232, 84, 65);
 }
 
 nav a.active {
@@ -48,5 +44,6 @@ nav a.active {
   height: 17rem;
   border-radius: 30%;
 }
+
 
 

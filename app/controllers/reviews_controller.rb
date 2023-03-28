@@ -6,15 +6,20 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    review = @current_user.reviews.create!(review_params)
-    # review = Review.create!(review_params)
-    render json: review, status: :created
+    review = user.reviews.create!(review_params)
+      if user.valid?
+        session[:user_id] = user.id
+        render json: review, status: :created
+      else
+        render json: { errors: review.errors.full_messages },
+        status: :unprocessable_entity
+      end
   end
 
-  def update
-    update_review = @current_user.reviews.update!(review_params)
-    render json: update_review
-  end
+  # def update
+  #   update_review = @current_user.reviews.update!(review_params)
+  #   render json: update_review
+  # end
 
   # def destroy
   #   delete_review = Review.find_by(id: params[:id])

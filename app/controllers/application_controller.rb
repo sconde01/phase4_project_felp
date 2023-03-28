@@ -1,16 +1,23 @@
 class ApplicationController < ActionController::API
   include ActionController::Cookies
 
-  # rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
-
   before_action :authorize
 
-  private
+  def current_user
+    User.find_by_id(session[:user_id])
+  end
+
+  def logged_in?
+    !!session[:user_id] # two bangs for bboolean value true (opposite of opposite)
+  end
 
   def authorize
-    @current_user = User.find_by(id: session[:user_id])
+    return render json: { errors: ["Not authorized. Please Login."] }, status: 
+    :unauthorized unless logged_in?
+  end
 
-    render json: { errors: ["Not authorized"] }, status: :unauthorized unless @current_user
+  def authorized
+    render json: { errors: ["You are already logged in, please log out first."]}, status: :unauthorized if logged_in?
   end
 
   # def render_unprocessable_entity_response(exception)
