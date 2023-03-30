@@ -5,25 +5,35 @@ class ReviewsController < ApplicationController
     render json: Review.all
   end
 
+  # def create <<<this worked with new 
+  #   @review = Review.new(review_params)
+  #   render json: @review, status: :created
+  # end
+
   def create
-    review = user.reviews.create!(review_params)
-      if user.valid?
-        session[:user_id] = user.id
-        render json: review, status: :created
-      else
-        render json: { errors: review.errors.full_messages },
-        status: :unprocessable_entity
-      end
+    review = Review.create!(review_params)
+    render json: review, status: :created
   end
 
+  # def create
+  #   review = @current_foodtruck.create!(review_params)
+  #     if review.valid?
+  #       session[:user_id] = user.id
+  #       render json: review, status: :created
+  #     else
+  #       render json: { errors: review.errors.full_messages },
+  #       status: :unprocessable_entity
+  #     end
+  # end
+
   # def update
-  #   update_review = @current_user.reviews.update!(review_params)
+  #   update_review = current_user.reviews.update!(review_params)
   #   render json: update_review
   # end
 
   # def destroy
   #   delete_review = Review.find_by(id: params[:id])
-  #     if user&.@current_user.review
+  #     if user&.current_user.review
   #       delete_review.destroy
   #       head :no_content
   #   else
@@ -31,18 +41,12 @@ class ReviewsController < ApplicationController
 
     # @current_user.reviews.destroy
     # head :no_content
-    #is a user going to be able to destroy all/any reviews if logged in?? 
-    # how do I design front end for users to see a "delete" button if they are loggedin?? and only for their reviews
+ 
 
-  end
-
-private
-  def review_params
+  private
+    def review_params
     params.permit(:review)
-  end
+    end
 
-  # def authorize
-  #     @current_user = User.find_by(id: session[:user_id])
-  #     render json: { errors: ["Not authorized"] }, status: :unauthorized unless @current_user
-  #   end
+
 end

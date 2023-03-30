@@ -1,18 +1,21 @@
-import Button from 'react-bootstrap/Button';
+// import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
 import { Reviews } from '../reviews/Reviews';
-// import { Users } from '../users/Users';
+import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { UserContext } from '../Context/UserContext';
 
 export const FoodTruckCards = ({foodtruck}) => {
+  const { loggedIn } = useContext(UserContext); 
+  // const navigate = useNavigate();
+
+  const id = foodtruck.id;
 
   const show_reviews = foodtruck.reviews.map( review => 
   <Reviews key={review.id} review={review} />)
    
-  // const show_username = foodtruck.usernames.map( username => 
-  // <Users key ={username.id} username={username} />)
-
 
   return (
     <Row >
@@ -25,12 +28,19 @@ export const FoodTruckCards = ({foodtruck}) => {
             <Card.Text>Cuisine: { foodtruck.cuisine}</Card.Text>
             <p> Food Lovers are saying:</p>
               { show_reviews } 
-            <Button variant="primary">Sign in to add a review</Button>
+            <p>
+              { loggedIn ? (
+              <Link to={(`/food_trucks/${id}`)}>Add a Review</Link>) : (
+              <Link to="/login">Add a Review</Link>
+              )
+              }</p>
+
           </Card.Body>
         </Card>
       </Col> 
     </Row> 
   )
+  
 }
 
 export default FoodTruckCards;

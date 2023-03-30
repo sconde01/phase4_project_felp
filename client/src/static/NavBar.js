@@ -14,8 +14,9 @@ export const NavBar = () => {
   const NavBarLoggedIn = () => {
     return (
       <>
-      <li> {currentUser.username}</li>
-      <li><Link to="#" onClick={handleLogoutClick}>Logout</Link></li>
+      <h2> Hi there, {currentUser.username} !</h2>
+      <p> <Link to="/food_trucks/new">Add a Food Truck</Link></p>
+      <p><Link to="#" onClick={handleLogoutClick}>Logout</Link></p>
       </>
     )
   }
@@ -23,8 +24,8 @@ export const NavBar = () => {
   const NavBarLoggedOut = () => {
     return (
       <>
-      <li><Link to="/signup">Signup</Link></li>
-      <li> <Link to="/login">Login</Link></li>
+      <p><Link to="/signup">Signup</Link></p>
+      <p> <Link to="/login">Login</Link></p>
       </>
     )
   }

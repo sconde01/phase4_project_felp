@@ -5,9 +5,9 @@ import { Signup } from './auth/Signup';
 import { ErrorsProvider } from './Context/ErrorsContext';
 import { FoodTruckProvider } from './Context/FoodTruckContext';
 import { UserProvider } from './Context/UserContext';
-import { FoodTruckCards } from './foodtruck/FoodTruckCards';
 import { FoodTruckContainer } from './foodtruck/FoodTruckContainer';
-import { ReviewForm } from './reviews/ReviewForm';
+import { FoodTruckReview } from './foodtruck/FoodTruckReview';
+import { NewFoodTruck } from './foodtruck/NewFoodTruck';
 
 import Header from "./static/Header";
 import { NavBar } from './static/NavBar';
@@ -22,10 +22,10 @@ function App() {
           <Header/>
           <Routes>
             <Route path="/food_trucks" element= { <FoodTruckContainer/>} />
-            <Route path="/food_trucks/:id" element= { <FoodTruckCards/>} />
+            <Route path="/food_trucks/new" element= { <NewFoodTruck/>} />
+            <Route path="/food_trucks/:id" element= { <FoodTruckReview/>} />
             <Route path="/signup" element= { <Signup/>} />
             <Route path="/login" element= { <Login/>} />
-            <Route path="/reviews" element= { <ReviewForm/>} />
           </Routes>
         </FoodTruckProvider>
       </UserProvider>

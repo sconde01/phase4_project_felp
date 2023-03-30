@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   
+  # resources :reviews
   resources :reviews, except: [:show]
   resources :users, only: [:index]
-  resources :food_trucks, only: [:index, :show, :create]
+  resources :food_trucks, only: [:index, :show, :create] 
+ 
 
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!

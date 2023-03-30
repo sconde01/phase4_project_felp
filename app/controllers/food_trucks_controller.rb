@@ -6,15 +6,15 @@ class FoodTrucksController < ApplicationController
   end
   
   def show
-    foodtruck = FoodTruck.find_by(id: params[:id])
+    # byebug 
+    current_foodtruck
     render json: foodtruck
   end
 
-  # def create
-  #   # byebug 
-  #   foodtruck = @current_user.food_trucks.create!(foodtruck_params)
-  #   render json: foodtruck, status: :created
-  # end
+  def create
+    foodtruck = FoodTruck.create!(foodtruck_params)
+    render json: foodtruck, status: :created
+  end
 
   private
 

@@ -4,11 +4,20 @@ class ApplicationController < ActionController::API
   before_action :authorize
 
   def current_user
-    User.find_by_id(session[:user_id])
+    User.find_by(id: session[:user_id])
   end
 
+  def current_foodtruck
+    @current_foodtruck = FoodTruck.find_by(id: params[:food_truck_id])
+  end
+
+  # def new <<<<<this worked...rendered review but didn't create id or anything else
+  #   foodtruck_review = FoodTruck.find(id: params[:food_truck_id])
+  #   @review = foodtruck_review.review.new
+  # end
+
   def logged_in?
-    !!session[:user_id] # two bangs for bboolean value true (opposite of opposite)
+    !!session[:user_id] # two bangs for boolean value true (opposite of opposite)
   end
 
   def authorize

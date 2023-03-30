@@ -14,7 +14,7 @@ const UserProvider = ({ children }) => {
       if(!data.errors) {
       loginUser(data)}
     })
-  });
+  }, []); //[] = showing ALL users?
   
   useEffect(() => {
     if(loggedIn) {
