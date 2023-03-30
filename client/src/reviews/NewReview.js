@@ -1,57 +1,65 @@
 import { Form, Button } from 'react-bootstrap';
 import React, { useState, useEffect, useContext } from 'react'
-import { useNavigate} from 'react-router-dom';
+import { useNavigate, useParams} from 'react-router-dom';
 import { ErrorsContext } from '../Context/ErrorsContext';
 import { UserContext } from '../Context/UserContext';
 import { FoodTruckContext } from '../Context/FoodTruckContext';
 
 export const NewReview = () => {
-
-  const initialState ={
-    review: ""
-  }
-
+  
+  
   const { setErrors } = useContext(ErrorsContext);
   const { loggedIn, currentUser } = useContext(UserContext);
-  const { addFoodTruckReview } = useContext(FoodTruckContext);
-  const [newReview, setNewReview ] = useState(initialState);
+  const { addFoodTruckReview, foodtrucks } = useContext(FoodTruckContext);
+  const {id} = useParams();
+ 
+  const getFoodTruck = foodtrucks.find(foodtruck => foodtruck.id === parseInt(id));
+  // debugger
+  const initialState ={
+    review: "",
+    food_truck_id: getFoodTruck.id
+  }
+
+  const [formData, setFormData ] = useState(initialState);
+  // debugger
   
   const navigate = useNavigate();
-
+  
   useEffect(() => {
     if(!loggedIn) {
       navigate('/login') }
-    return () => {
-      setErrors([])
+      return () => {
+        setErrors([])
       }
-  }, [loggedIn, navigate, setErrors])
-
-  // I need to create a review that is associated to a food truck here or backend????
-  const handleChange = e => {
-    const { name, value} = e.target;
-    // console.log(value)
-    setNewReview({
-      ...newReview,
-      [name]: value
-    })
-  }
-
-  const handleSubmit = e => {
-    e.preventDefault();
-
-    fetch('/reviews', {
-      method: 'POST',
-      headers: {
-        "Accept": "application/json",
+    }, [loggedIn, navigate, setErrors])
+    
+    // I need to create a review that is associated to a food truck here or backend????
+    const handleChange = e => {
+      const { name, value } = e.target;
+      setFormData({
+        ...formData,
+        [name]: value
+      })
+    }
+    
+    
+    const handleSubmit = e => {
+      e.preventDefault();
+      
+      fetch('/reviews', {
+        method: 'POST',
+        headers: {
+          "Accept": "application/json",
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(newReview)
+      body: JSON.stringify(formData)
     })
       .then(r => r.json())
       .then(data => {
         if(data.errors) {
           setErrors(data.errors)
       } else {
+        console.log(data)
           addFoodTruckReview(data);
          navigate('/food_trucks');
       }
@@ -69,18 +77,21 @@ export const NewReview = () => {
           // placeholder="Share your thoughts here..." 
           name="review"
           id="review"
-          value={ newReview.review }
+          value={ formData.review }
           onChange={ handleChange }
         />
 
-      <p> You: {currentUser?.username }</p>
+      {/* <p> You: {currentUser?.username }</p> */}
+      {/* <p> You: {food }</p> */}
 
-      <input 
+
+      {/* below is me trying to attempt to add username requirement to this from */}
+      {/* <input 
       type="username" 
       id="username"
       value={currentUser?.id}
-      onChange={ e => setNewReview(e.target.value) }
-      />
+      onChange={handleChange }
+      /> */}
 
         <Form.Text className="text-muted">
          <br/>

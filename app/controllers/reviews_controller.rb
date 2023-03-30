@@ -11,20 +11,11 @@ class ReviewsController < ApplicationController
   # end
 
   def create
-    review = Review.create!(review_params)
+    # byebug
+    review = current_user.reviews.create!(review_params)
     render json: review, status: :created
   end
 
-  # def create
-  #   review = @current_foodtruck.create!(review_params)
-  #     if review.valid?
-  #       session[:user_id] = user.id
-  #       render json: review, status: :created
-  #     else
-  #       render json: { errors: review.errors.full_messages },
-  #       status: :unprocessable_entity
-  #     end
-  # end
 
   # def update
   #   update_review = current_user.reviews.update!(review_params)
@@ -45,7 +36,7 @@ class ReviewsController < ApplicationController
 
   private
     def review_params
-    params.permit(:review)
+    params.permit(:review, :food_truck_id, :user_id)
     end
 
 

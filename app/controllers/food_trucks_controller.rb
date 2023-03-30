@@ -6,8 +6,7 @@ class FoodTrucksController < ApplicationController
   end
   
   def show
-    # byebug 
-    current_foodtruck
+    foodtruck = FoodTruck.find_by(id: params[:id])
     render json: foodtruck
   end
 

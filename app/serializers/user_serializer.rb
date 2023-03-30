@@ -1,6 +1,7 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :password_digest
+  attributes :id, :username
 
-  # has_many :reviews ?? if a user wants to see it's profile and all of its reviews?
+  has_many :reviews 
+  has_many :food_trucks
    
 end

@@ -7,9 +7,6 @@ class ApplicationController < ActionController::API
     User.find_by(id: session[:user_id])
   end
 
-  def current_foodtruck
-    @current_foodtruck = FoodTruck.find_by(id: params[:food_truck_id])
-  end
 
   # def new <<<<<this worked...rendered review but didn't create id or anything else
   #   foodtruck_review = FoodTruck.find(id: params[:food_truck_id])
