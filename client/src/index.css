@@ -45,5 +45,12 @@ nav a.active {
   border-radius: 30%;
 }
 
+.cuisine {
+  font-size: 12pt;
+  text-decoration-style: dotted;
+  color: rgb(17, 182, 138);
+
+}
+
 
 

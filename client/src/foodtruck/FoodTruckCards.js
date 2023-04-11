@@ -16,7 +16,6 @@ export const FoodTruckCards = ({foodtruck}) => {
   const show_reviews = foodtruck.reviews.map( review => 
   <Reviews key={review.id} review={review} />)
    
-
   return (
     <Row >
       <Col>
@@ -25,15 +24,15 @@ export const FoodTruckCards = ({foodtruck}) => {
              <Card.Body>
              <Card.Title>{ foodtruck.name } </Card.Title>
             <Card.Text>{ foodtruck.address }</Card.Text>
-            <Card.Text>Cuisine: { foodtruck.cuisine}</Card.Text>
-            <p> Food Lovers are saying:</p>
+            <Card.Text className = "cuisine">Cuisine: </Card.Text> 
+            <Card.Text>{ foodtruck.cuisine}</Card.Text> 
+            <h6>Food Lovers are saying: </h6> 
               { show_reviews } 
             <p>
               { loggedIn ? (
               <Link to={(`/food_trucks/${id}`)}>Add a Review</Link>) : (
-              <Link to="/login">Add a Review</Link>
-              )
-              }</p>
+              <Link to="/login">Log in to add a Review</Link>)
+            }</p>
 
           </Card.Body>
         </Card>

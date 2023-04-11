@@ -6,8 +6,8 @@ class UsersController < ApplicationController
     render json: User.all
   end
 
+  #render currently logged in user
   def show_current_user
-    #render currently logged in user
     render json: current_user
   end
 

@@ -8,9 +8,11 @@ import { UserProvider } from './Context/UserContext';
 import { FoodTruckContainer } from './foodtruck/FoodTruckContainer';
 import { FoodTruckReview } from './foodtruck/FoodTruckReview';
 import { NewFoodTruck } from './foodtruck/NewFoodTruck';
+import { EditReview } from './reviews/EditReview';
 
 import Header from "./static/Header";
 import { NavBar } from './static/NavBar';
+import { UserReviewList } from './users/UserReviewList';
 
 function App() {
   return (
@@ -23,7 +25,9 @@ function App() {
           <Routes>
             <Route path="/food_trucks" element= { <FoodTruckContainer/>} />
             <Route path="/food_trucks/new" element= { <NewFoodTruck/>} />
+            <Route path="/food_trucks/user-reviews" element= { <UserReviewList/>} />
             <Route path="/food_trucks/:id" element= { <FoodTruckReview/>} />
+            <Route path="/reviews/:id/edit" element= { <EditReview/>} />
             <Route path="/signup" element= { <Signup/>} />
             <Route path="/login" element= { <Login/>} />
           </Routes>

@@ -9,7 +9,8 @@ export const FoodTruckContainer = () => {
   const foodTruckCards = foodtrucks.map(foodtruck => 
   <FoodTruckCards 
   key={ foodtruck.id } 
-  foodtruck={ foodtruck } />)
+  foodtruck={ foodtruck }/>
+  )
 
   return (
     <div className = "row row-cols-3" >

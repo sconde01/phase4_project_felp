@@ -16,6 +16,7 @@ export const NavBar = () => {
       <>
       <h2> Hi there, {currentUser.username} !</h2>
       <p> <Link to="/food_trucks/new">Add a Food Truck</Link></p>
+      <p> <Link to="/food_trucks/user-reviews">See/Edit Reviews</Link></p>
       <p><Link to="#" onClick={handleLogoutClick}>Logout</Link></p>
       </>
     )

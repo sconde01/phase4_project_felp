@@ -7,12 +7,6 @@ class ApplicationController < ActionController::API
     User.find_by(id: session[:user_id])
   end
 
-
-  # def new <<<<<this worked...rendered review but didn't create id or anything else
-  #   foodtruck_review = FoodTruck.find(id: params[:food_truck_id])
-  #   @review = foodtruck_review.review.new
-  # end
-
   def logged_in?
     !!session[:user_id] # two bangs for boolean value true (opposite of opposite)
   end

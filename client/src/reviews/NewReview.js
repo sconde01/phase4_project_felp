@@ -6,8 +6,6 @@ import { UserContext } from '../Context/UserContext';
 import { FoodTruckContext } from '../Context/FoodTruckContext';
 
 export const NewReview = () => {
-  
-  
   const { setErrors } = useContext(ErrorsContext);
   const { loggedIn, currentUser } = useContext(UserContext);
   const { addFoodTruckReview, foodtrucks } = useContext(FoodTruckContext);
@@ -15,11 +13,12 @@ export const NewReview = () => {
  
   const getFoodTruck = foodtrucks.find(foodtruck => foodtruck.id === parseInt(id));
   // debugger
+  
   const initialState ={
     review: "",
     food_truck_id: getFoodTruck.id
   }
-
+  
   const [formData, setFormData ] = useState(initialState);
   // debugger
   
@@ -33,11 +32,11 @@ export const NewReview = () => {
       }
     }, [loggedIn, navigate, setErrors])
     
-    // I need to create a review that is associated to a food truck here or backend????
     const handleChange = e => {
       const { name, value } = e.target;
       setFormData({
         ...formData,
+        // the backets are used to put a variable value as a property
         [name]: value
       })
     }
@@ -59,7 +58,7 @@ export const NewReview = () => {
         if(data.errors) {
           setErrors(data.errors)
       } else {
-        console.log(data)
+        // console.log(data)
           addFoodTruckReview(data);
          navigate('/food_trucks');
       }
@@ -74,14 +73,13 @@ export const NewReview = () => {
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <input
           type="text" 
-          // placeholder="Share your thoughts here..." 
           name="review"
           id="review"
           value={ formData.review }
           onChange={ handleChange }
         />
 
-      {/* <p> You: {currentUser?.username }</p> */}
+      <p> You: {currentUser?.username }</p>
       {/* <p> You: {food }</p> */}
 
 

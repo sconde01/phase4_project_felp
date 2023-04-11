@@ -31,6 +31,11 @@ const FoodTruckProvider = ({ children }) => {
   const addFoodTruckReview = review => {
     setReviews([...reviews, review]);
   }
+  // const addFoodTruckReview = (e) => {
+  //   const review = e.target.value;
+  //   console.log(review);
+  //   setReviews([...reviews, review]);
+  // }
 
   const editFoodTruckReview = editedReview => {
     const updateReview = reviews.map(review => {
@@ -49,7 +54,7 @@ const FoodTruckProvider = ({ children }) => {
       setReviews(updateReview);
   }
   
-  return <FoodTruckContext.Provider value={{ foodtrucks, addFoodTruck , addFoodTruckReview, editFoodTruckReview, deleteFoodTruckReview}}>{ children }</FoodTruckContext.Provider>
+  return <FoodTruckContext.Provider value={{ foodtrucks, addFoodTruck , addFoodTruckReview, reviews,editFoodTruckReview, deleteFoodTruckReview}}>{ children }</FoodTruckContext.Provider>
 
 
 }

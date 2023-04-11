@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   # resources :reviews
-  resources :reviews, except: [:show]
+  resources :reviews
   resources :users, only: [:index]
   resources :food_trucks, only: [:index, :show, :create] 
  

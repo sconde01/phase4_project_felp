@@ -6,4 +6,11 @@ class User < ApplicationRecord
   validates :password_digest, presence: true
 
   has_secure_password
+
+  #instance methods??
+
+  def no_reviews
+    reviews.empty?(review: "{}") || "you have no reviews"
+  end
+  # byebug 
 end
