@@ -51,6 +51,22 @@ nav a.active {
   color: rgb(17, 182, 138);
 
 }
+.userreviewlist {
+  display:flex;
+  font-size: 12pt;
+  text-decoration-style: dotted;
+  color: rgb(7, 7, 7);
+  margin: 0 auto; 
+  float: none; 
+  margin-bottom: 10px; 
+
+}
+
+.usernamesays {
+  text-decoration: underline;
+  font-weight:bold
+}
+
 
 
 

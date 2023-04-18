@@ -16,4 +16,6 @@ Rails.application.routes.draw do
   post "/signup", to: "users#create"
   get "/show-current-user", to: "users#show_current_user"
 
+  get "/food_trucks/reviews/:n", to: "food_trucks#numbers"
+
 end

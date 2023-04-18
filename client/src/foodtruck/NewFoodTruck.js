@@ -49,6 +49,7 @@ export const NewFoodTruck = () => {
     })
       .then(r => r.json())
       .then(data => {
+        console.log(data);
         if(data.errors) {
           setErrors(data.errors)
         } else {
@@ -72,6 +73,7 @@ export const NewFoodTruck = () => {
           id="name"
           value={ formData.name }
           onChange={ handleChange }
+          // onChange={ e => setFormData(e.target.value) }
         />
       </div>
       <div>
@@ -81,6 +83,7 @@ export const NewFoodTruck = () => {
           name="address"
           value={ formData.address }
           onChange={ handleChange }
+
         />
       </div>
       <div>
@@ -90,6 +93,7 @@ export const NewFoodTruck = () => {
           name="cuisine"
           value={ formData.cuisine }
           onChange={ handleChange }
+
         />
       </div>
       <div>
@@ -99,6 +103,7 @@ export const NewFoodTruck = () => {
           name="image_url"
           value={ formData.image_url }
           onChange={ handleChange }
+
         />
       </div>
 

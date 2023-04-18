@@ -9,8 +9,12 @@ class User < ApplicationRecord
 
   #instance methods??
 
-  def no_reviews
-    reviews.empty?(review: "{}") || "you have no reviews"
-  end
+  # def no_reviews
+  #   if reviews.empty?
+  #     "you have no reviews"
+  #   else
+  #     reviews
+  #   end
+  # end
   # byebug 
 end

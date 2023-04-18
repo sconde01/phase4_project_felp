@@ -7,14 +7,8 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    # review = Review.find_by(id: params[:id])
-    render json: @review
+    render json: @review  
   end
-
-  # def create <<<this worked with new 
-  #   @review = Review.new(review_params)
-  #   render json: @review, status: :created
-  # end
 
   def create
     # byebug
@@ -24,26 +18,15 @@ class ReviewsController < ApplicationController
 
   def update
     # byebug
-    update_review = @review.update!(review_params)
-      if user&.current_user
-        update_review
-        render json: update_review
+    #us the current user, are we updating. foreign key has to 
+      if current_user.id == @review.user_id
+        @review.update!(review_params)
+        render json: @review
       else
-        render json: { errors: update_review.errors.full_messages }, status: :unprocessable_entity
+        #[] keeps front end consistent
+        render json: { errors: ["You are not authorized to update this review."] }, status: :unprocessable_entity
       end    
   end
-
-  #A USER NEED TO BE LOGGED IN TO DESTROY THE REVIEW??
-  # def destroy
-  #   delete_review = @review
-  #   if user&.current_user
-  #     delete_review.destroy
-  #     head :no_content
-  #     render json: delete_review
-  #   else
-  #     render json: { errors: delete_review.errors.full_messages }, status: :unprocessable_entity
-  #   end
-  # end
 
   def destroy
     @review.destroy

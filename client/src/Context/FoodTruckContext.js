@@ -37,6 +37,16 @@ const FoodTruckProvider = ({ children }) => {
   //   setReviews([...reviews, review]);
   // }
 
+  // const editFoodTruckReview = editedReview => {
+  //   const updateReview = foodtrucks.reviews?.map(review => {
+  //     if(editedReview.id === review.id) {
+  //       return editedReview; 
+  //     } else {
+  //       return review;
+  //     }
+  //   });
+  //   setReviews(updateReview);
+  // }
   const editFoodTruckReview = editedReview => {
     const updateReview = reviews.map(review => {
       if(editedReview.id === review.id) {

@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::API
   include ActionController::Cookies
+  rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
   before_action :authorize
 
@@ -11,6 +12,7 @@ class ApplicationController < ActionController::API
     !!session[:user_id] # two bangs for boolean value true (opposite of opposite)
   end
 
+  #authorize is used for if someone is logged in, then they are authorized to access
   def authorize
     return render json: { errors: ["Not authorized. Please Login."] }, status: 
     :unauthorized unless logged_in?
@@ -20,9 +22,9 @@ class ApplicationController < ActionController::API
     render json: { errors: ["You are already logged in, please log out first."]}, status: :unauthorized if logged_in?
   end
 
-  # def render_unprocessable_entity_response(exception)
-  #   render json: { errors: exception.record.errors.full_messages }, status: :unprocessable_entity
-  # end
+  def render_unprocessable_entity_response(exception)
+    render json: { errors: exception.record.errors.full_messages }, status: :unprocessable_entity
+  end
 
 
 end

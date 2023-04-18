@@ -10,8 +10,18 @@ class FoodTrucksController < ApplicationController
     render json: foodtruck
   end
 
+  # all foodtrucks with :n or more reviews
+  # def numbers
+  #   foodtrucks = FoodTruck.all.select { |foodtruck| 
+  #     foodtruck.reviews.length >= params[:n].to_i}
+  #   render json: foodtrucks
+  #   # byebug
+  # end
+
   def create
+    # byebug
     foodtruck = FoodTruck.create!(foodtruck_params)
+    # foodtruck = current_user.food_trucks.create!(foodtruck_params)
     render json: foodtruck, status: :created
   end
 
