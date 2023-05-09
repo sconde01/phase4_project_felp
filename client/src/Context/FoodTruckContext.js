@@ -4,7 +4,7 @@ const FoodTruckContext = createContext ([]);
 
 const FoodTruckProvider = ({ children }) => {
   const [foodtrucks, setFoodTrucks] = useState([]);
-  const [reviews, setReviews] = useState([]);
+//console.log("foodtrucks at top of foodtruck provider", foodtrucks)
 
   useEffect (() => {
     fetch('/food_trucks')
@@ -14,61 +14,65 @@ const FoodTruckProvider = ({ children }) => {
       })
   }, [])
 
-  useEffect (() => {
-    fetch('/reviews')
-      .then(r => r.json())
-      .then(data => {
-        setReviews(data)
-      })
-  }, [])
+  //Helpers:
 
-  //Helpers
+  //add a food truck
   const addFoodTruck = foodtruck => {
     setFoodTrucks([...foodtrucks, foodtruck]);
   }
 
-  //add, edit, and delete REVIEWS helpers
-  const addFoodTruckReview = review => {
-    setReviews([...reviews, review]);
-  }
-  // const addFoodTruckReview = (e) => {
-  //   const review = e.target.value;
-  //   console.log(review);
-  //   setReviews([...reviews, review]);
-  // }
-
-  // const editFoodTruckReview = editedReview => {
-  //   const updateReview = foodtrucks.reviews?.map(review => {
-  //     if(editedReview.id === review.id) {
-  //       return editedReview; 
-  //     } else {
-  //       return review;
-  //     }
-  //   });
-  //   setReviews(updateReview);
-  // }
+  //edit a food truck review
   const editFoodTruckReview = editedReview => {
-    const updateReview = reviews.map(review => {
+    const foodtruck = foodtrucks.find( ft => editedReview.food_truck_id === ft.id )
+    console.log("foodtruck", foodtruck);
+    const updateReview = foodtruck.reviews.map(review => {
       if(editedReview.id === review.id) {
         return editedReview; 
       } else {
         return review;
       }
     });
-    setReviews(updateReview);
+    const updatedFoodTruck = {
+      ...foodtruck, 
+      reviews: updateReview
+    }
+    const updateFoodTrucks = foodtrucks.map(foodtruck => {
+      if(updatedFoodTruck.id === foodtruck.id) {
+        return updatedFoodTruck; 
+      } else {
+        return foodtruck;
+      }
+    });
+  
+    setFoodTrucks(updateFoodTrucks);
   }
 
+  //delete a food truck review
   const deleteFoodTruckReview = deletedFoodTruckReview => {
-    const updateReview = reviews.filter(
+    //debugger
+    const foodtruck = foodtrucks.find( ft => deletedFoodTruckReview.food_truck_id === ft.id )
+// make copy of foodtruck , map 
+    const updateReviews = foodtruck.reviews?.filter(
       review => review.id !== deletedFoodTruckReview.id)
-      setReviews(updateReview);
+    // console.log("updateReviews", updateReviews);
+
+    const copyofFT = {...foodtruck, reviews: updateReviews}
+    const updatedFoodTrucks = foodtrucks.map( ft => {
+      if( ft.id === deletedFoodTruckReview.food_truck_id) {
+        return copyofFT
+      }else{
+        return ft
+    } })    
+      setFoodTrucks(updatedFoodTrucks);
+      // console.log("updated ft", updateReviews);
   }
   
-  return <FoodTruckContext.Provider value={{ foodtrucks, addFoodTruck , addFoodTruckReview, reviews,editFoodTruckReview, deleteFoodTruckReview}}>{ children }</FoodTruckContext.Provider>
+  return <FoodTruckContext.Provider value={{ foodtrucks, setFoodTrucks, deleteFoodTruckReview, addFoodTruck ,editFoodTruckReview}}>{ children }</FoodTruckContext.Provider>
+
 
 
 }
 
 
-
 export { FoodTruckContext, FoodTruckProvider };
+

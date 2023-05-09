@@ -16,16 +16,11 @@ export const NavBar = () => {
 
   const NavBarLoggedIn = () => {
     return (
-      // <>
-      // <h2> Hi there, {currentUser.username} !</h2>
-      // <p> <Link to="/food_trucks/new">Add a Food Truck</Link></p>
-      // <p> <Link to="/food_trucks/user-reviews">See/Edit Reviews</Link></p>
-      // <p><Link to="#" onClick={handleLogoutClick}>Logout</Link></p>
-      // </>
       <Navbar>
       <Container>
         <Nav className="me-auto">
           <Link to="/food_trucks/new">Add a Food Truck</Link>
+          <Link to="/user/food_trucks">My Food Trucks</Link>
          </Nav>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">

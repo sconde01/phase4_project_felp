@@ -2,23 +2,27 @@ class ReviewsController < ApplicationController
   before_action :find_review, only: [:update, :destroy, :show]
   skip_before_action :authorize, only: [:index]
 
+  # GET /reviews ...instance method for if there are no reviews
   def index
     render json: Review.all
   end
 
+  # GET /reviews/:id
   def show
     render json: @review  
   end
 
+  # POST /reviews/:id
   def create
     # byebug
     review = current_user.reviews.create!(review_params)
     render json: review, status: :created
   end
 
+  # PATCH /reviews:id
   def update
     # byebug
-    #us the current user, are we updating. foreign key has to 
+      #the current_user is updating review. review (joins table)'s foreign_key has to match current_user
       if current_user.id == @review.user_id
         @review.update!(review_params)
         render json: @review

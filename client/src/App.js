@@ -13,6 +13,8 @@ import { EditReview } from './reviews/EditReview';
 import Header from "./static/Header";
 import { NavBar } from './static/NavBar';
 import { UserReviewList } from './users/UserReviewList';
+import { UserFoodTrucks } from './users/UserFoodTrucks';
+import { Errors } from './errors/Errors';
 
 function App() {
   return (
@@ -22,10 +24,12 @@ function App() {
         <FoodTruckProvider>
           <NavBar/>
           <Header/>
+          <Errors/>
           <Routes>
             <Route path="/food_trucks" element= { <FoodTruckContainer/>} />
             <Route path="/food_trucks/new" element= { <NewFoodTruck/>} />
             <Route path="/food_trucks/user-reviews" element= { <UserReviewList/>} />
+            <Route path="/user/food_trucks" element= { <UserFoodTrucks/> } />
             <Route path="/food_trucks/:id" element= { <FoodTruckReview/>} />
             <Route path="/reviews/:id/edit" element= { <EditReview/>} />
             <Route path="/signup" element= { <Signup/>} />

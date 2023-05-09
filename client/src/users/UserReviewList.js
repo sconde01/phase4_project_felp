@@ -1,25 +1,31 @@
 import React, { useContext } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FoodTruckContext } from '../Context/FoodTruckContext';
 import { UserContext } from '../Context/UserContext';
 import Card from 'react-bootstrap/Card';
 
 export const UserReviewList = () => {
-  const { currentUser } = useContext(UserContext);
+  const { currentUser, deleteUserFoodTruckReview } = useContext(UserContext);
   const { deleteFoodTruckReview } = useContext(FoodTruckContext);
+  const navigate = useNavigate();
+
+  console.log("current user in UserReviewList", currentUser);
 
   const handleDelete = (review) => {
     fetch(`/reviews/${review.id}`, {
       method: "DELETE",
     })
-    .then(() => 
-    deleteFoodTruckReview(review))
+    .then(() => {
+    deleteFoodTruckReview(review)
+    deleteUserFoodTruckReview(review)
+    navigate('/food_trucks')
+  })
     // console.log(review);
   }
   //debugger
 
   //I want to render current users reviews with the links that allow them to edit or delete them
-  const user_review = currentUser?.reviews.map (review => (
+  const user_reviews = currentUser?.reviews.map (review => (
     <div key={review.id}> 
       <Card className= "userreviewlist" style={{ width: '20rem'}}>
       <Card.Body>
@@ -42,14 +48,13 @@ export const UserReviewList = () => {
     </div>
   ))
   //console.log(user_review)
-  //debugger
-  
+
   return (
     <div>
       <center><h4>Your reviews:</h4></center>
       <br/>
-      {/* ternary conditional operator not remaining */}
-       {user_review ? user_review : "you have no reviews"} 
+      {/* ternary conditional operator not persisting on page */}
+     <h1> {user_reviews ? user_reviews : "you have no reviews"} </h1> 
 
     </div>
   )

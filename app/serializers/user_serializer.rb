@@ -1,7 +1,7 @@
 class UserSerializer < ActiveModel::Serializer
   attributes :id, :username, :reviews
 
-  # has_many :reviews
+  has_many :food_trucks
 
   def reviews
     object.reviews.map do |review|

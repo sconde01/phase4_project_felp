@@ -4,7 +4,6 @@ import Card from 'react-bootstrap/Card';
 import { useParams } from 'react-router-dom';
 import { FoodTruckContext } from '../Context/FoodTruckContext';
 import { NewReview } from '../reviews/NewReview';
-// import { Reviews } from '../reviews/Reviews';
 
 export const FoodTruckReview = () => {
   const { foodtrucks } = useContext(FoodTruckContext);
@@ -13,13 +12,6 @@ export const FoodTruckReview = () => {
 
   const foodtruck = foodtrucks.find(foodtruck => foodtruck.id === id);
   // console.log(foodtruck);
-
-  // const show_reviews = foodtruck?.reviews.map( review => 
-  //   <Reviews 
-  //   key={review.id} 
-  //   review={review} />)
-  
-    // console.log("showreviews", show_reviews);
 
   return (
     <div>
@@ -30,8 +22,6 @@ export const FoodTruckReview = () => {
              <Card.Title>{ foodtruck?.name } </Card.Title>
             <Card.Text>{ foodtruck?.address }</Card.Text>
             <Card.Text>Cuisine: { foodtruck?.cuisine}</Card.Text>
-            {/* <p> Food Lovers are saying:</p>
-              { show_reviews }  */}
               <NewReview/>
             </Card.Body>
         </Card>

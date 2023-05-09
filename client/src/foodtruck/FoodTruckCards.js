@@ -2,19 +2,18 @@
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
-import { Reviews } from '../reviews/Reviews';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { UserContext } from '../Context/UserContext';
 
 export const FoodTruckCards = ({foodtruck}) => {
-  const { loggedIn } = useContext(UserContext); 
-  // const navigate = useNavigate();
-
-  // const id = foodtruck.id;
+  const { loggedIn } = useContext(UserContext);
 
   const show_reviews = foodtruck.reviews?.map( review => 
-  <Reviews key={review.id} review={review} />)
+  <div key={review.id}>
+    <p>{review.username}: </p> 
+    <p>{review.review}</p>
+  </div>)
    
   return (
     <Row >

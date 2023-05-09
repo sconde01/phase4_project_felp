@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id # this is the line that is going to log us in, cookies stored in browser allows us to remain looged in
       render json: user
     else
-      render json: { errors: ["Invalid username or password"] }, status: :unprocessable_entity  
+      render json: { errors: ["Invalid username or password"] }, status: :unauthorized 
     end
   end
 

@@ -49,7 +49,7 @@ export const NewFoodTruck = () => {
     })
       .then(r => r.json())
       .then(data => {
-        console.log(data);
+        console.log("data", data);
         if(data.errors) {
           setErrors(data.errors)
         } else {

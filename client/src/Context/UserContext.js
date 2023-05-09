@@ -40,7 +40,20 @@ const UserProvider = ({ children }) => {
     setUsers([...users, user]);
   }
   
-  return <UserContext.Provider value={{ users, loggedIn, loginUser, logoutUser, currentUser, addUser }}>{ children }</UserContext.Provider>
+  const deleteUserFoodTruckReview = deletedReview => {
+    const updatedReviews = currentUser.reviews.filter(review => review.id !== deletedReview.id)
+    const updatedUser = {...currentUser, reviews: updatedReviews}
+    setCurrentUser(updatedUser)
+  }
+
+  const updateUserFoodTruckReview = updatedReview => {
+    const updatedReviews = currentUser.reviews.map(
+      review => review.id === updatedReview.id ? updatedReview : review )
+    const updatedUser = {...currentUser, reviews: updatedReviews}
+    setCurrentUser(updatedUser)
+  }
+
+  return <UserContext.Provider value={{ users, loggedIn, loginUser, logoutUser, currentUser, setCurrentUser,addUser, deleteUserFoodTruckReview, updateUserFoodTruckReview }}>{ children }</UserContext.Provider>
 
 
 }
