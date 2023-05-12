@@ -25,6 +25,7 @@ const FoodTruckProvider = ({ children }) => {
   const editFoodTruckReview = editedReview => {
     const foodtruck = foodtrucks.find( ft => editedReview.food_truck_id === ft.id )
     console.log("foodtruck", foodtruck);
+
     const updateReview = foodtruck.reviews.map(review => {
       if(editedReview.id === review.id) {
         return editedReview; 
@@ -51,7 +52,7 @@ const FoodTruckProvider = ({ children }) => {
   const deleteFoodTruckReview = deletedFoodTruckReview => {
     //debugger
     const foodtruck = foodtrucks.find( ft => deletedFoodTruckReview.food_truck_id === ft.id )
-// make copy of foodtruck , map 
+// make copy of foodtruck 
     const updateReviews = foodtruck.reviews?.filter(
       review => review.id !== deletedFoodTruckReview.id)
     // console.log("updateReviews", updateReviews);

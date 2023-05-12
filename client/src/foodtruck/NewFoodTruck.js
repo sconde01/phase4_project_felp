@@ -61,11 +61,10 @@ export const NewFoodTruck = () => {
 
 
   return (
-    <div>
-    <h3>Add Food Truck! </h3>
-
-    <form onSubmit={ handleSubmit }>
+  
+    <form className="addFoodTruckForm" onSubmit={ handleSubmit }>
       <div>
+    <h3>Add A Food Truck! </h3>
         <label id="name">Name</label>
         <input
           type="text"
@@ -109,6 +108,6 @@ export const NewFoodTruck = () => {
 
       <input type="submit" value="Add Food Truck" />
     </form>
-  </div>
+
   )
 }

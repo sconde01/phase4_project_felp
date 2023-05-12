@@ -9,7 +9,7 @@ export const UserReviewList = () => {
   const { deleteFoodTruckReview } = useContext(FoodTruckContext);
   const navigate = useNavigate();
 
-  console.log("current user in UserReviewList", currentUser);
+  // console.log("current user in UserReviewList", currentUser);
 
   const handleDelete = (review) => {
     fetch(`/reviews/${review.id}`, {

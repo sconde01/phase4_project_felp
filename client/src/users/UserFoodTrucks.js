@@ -21,15 +21,13 @@ export const UserFoodTrucks = () => {
       </Card>
     </div>
   ))
-  //console.log(user_ft)
   
+
   return (
     <div>
       <center><h4>Your Food Trucks:</h4></center>
       <br/>
-      {/* ternary conditional operator not remaining */}
-       {user_ft ? user_ft : "you have no foodtrucks"} 
-
+       { user_ft }
     </div>
   )
 

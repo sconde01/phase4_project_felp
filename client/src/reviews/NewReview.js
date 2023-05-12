@@ -23,30 +23,48 @@ export const NewReview = () => {
   // const [reviews, setReviews] = useState([]);
   
   const navigate = useNavigate();
-  
-  const addFoodTruckReview = review => {
+
+  const addFoodTruckReview = (review) => {
     //1. add review to current user object's reviews
     const updateCurrentUserReviews = [...currentUser.reviews, review]
+    console.log("updatecurrent user review first" , updateCurrentUserReviews)
     //1a. now make sure that the current user reviews are set to be this new array
     // currentUser.reviews = updateCurrentUserReviews
     const copyofcurrentUser = {...currentUser, reviews: updateCurrentUserReviews}
-    // console.log("copyofcurrentUser", copyofcurrentUser)
-    setCurrentUser(copyofcurrentUser)
+    console.log("copyofcurrentUser", copyofcurrentUser)
+
+    //>>>>>>how do i make sure that the food truck is already in food trucks list
+    //debugger
+    //if the food trucks of the copy of current user contains food truck with the id the same of review food truck id
+
+    //do i need foodtruckReseult?? 
+    const foodtruckResult = 
+    copyofcurrentUser.food_trucks.find (ft => ft.id === review.food_truck.id) 
+    //new food truck array with latest food truck (from review.food_truck) added to food_trucks 
+    const newFoodTruckArray = [...copyofcurrentUser.food_trucks, review.food_truck]
+    //add new updated food_truck array to current user
+    const addFoodTruckArrayToCurrentUser = {...copyofcurrentUser, food_trucks: newFoodTruckArray}
+    //console.log(addFoodTruckArrayToCurrentUser)
+    //if foodtruckResults is undefined, then addFoodTruckIfNoResult
+    const addFoodTruckIfNoResult = 
+    (foodtruckResult !== addFoodTruckArrayToCurrentUser ? addFoodTruckArrayToCurrentUser : foodtruckResult)
+    //console.log("finally", addFoodTruckIfNoResult)
+
+    
+    setCurrentUser(addFoodTruckIfNoResult)
     
     //2. add review to food trucks object's reviews  
-    const updatedFoodTruck = {...getFoodTruck, reviews:[...getFoodTruck.reviews,review]}
+    const updatedFoodTruckReview = {...getFoodTruck, reviews:[...getFoodTruck.reviews,review]}
     // console.log("up", updatedFoodTruck)
     //3. conditional logic that checks users food truck to see if a particular food truck is there
-    // const filteredFoodTrucks = foodtrucks.filter( ft => ft.id !== review.food_truck_id)
-    // const newFoodTruck = [...filteredFoodTrucks, updatedFoodTruck]
-    const updatedFoodTrucks = foodtrucks.map( ft => {
+    const updatedFoodTruckReviews = foodtrucks.map( ft => {
       if( ft.id === review.food_truck_id) {
-        return updatedFoodTruck
+        return updatedFoodTruckReview
       }else{
         return ft
       }
     })
-    setFoodTrucks(updatedFoodTrucks)
+    setFoodTrucks(updatedFoodTruckReviews)
 
   }
 

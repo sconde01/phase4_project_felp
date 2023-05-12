@@ -1,16 +1,32 @@
-body {
+#main-header{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  height: 25rem;
+  border-radius: 30%;
+  /* background-color: #b4e1d4; */
+} 
+
+  
+  body {
+  background-image: url("https://t3.ftcdn.net/jpg/01/60/52/82/360_F_160528201_Mtb5UDzubTLH6gtvsEfg77U4T5uAdCiq.jpg");
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
+    sans-serif; */
+    font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;  
   -moz-osx-font-smoothing: grayscale;
-}
+  text-align: center;
+
+}  
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
+}    
 
 
 nav a {
@@ -18,32 +34,34 @@ nav a {
   margin: 1rem;
   padding: 0.25rem;
   text-decoration: none;
-  font-size: 13pt;
+  font-size: 15pt;
+  font-weight: bold;
   color: rgb(8, 8, 8);
-  border-bottom: 2px solid #58b87d;
+  border-bottom: 4px solid #58b87d;
   transition: 0.1s;
   font-style: normal;
+  background-color: #eaf3f0;
+  border-radius: 10%;
   
+}  
+
+.signedin{
+  color: #000000;
+  border-radius: 45%;
+  background-color: #abba25a9;
 }
 
 nav a:hover,
 nav a:active {
   color: rgb(247, 246, 246);
-  border-bottom: 2px solid rgb(232, 84, 65);
-}
+  border-bottom: 2px solid rgb(224, 204, 73);
+}  
 
+nav a:hover,
 nav a.active {
   color: white;
-  background: rgb(232, 193, 237);
-}
-
-#main-header{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  height: 17rem;
-  border-radius: 30%;
-}
+  background: rgba(236, 108, 76, 0.916);
+}  
 
 .cuisine {
   font-size: 12pt;
@@ -67,6 +85,35 @@ nav a.active {
   font-weight:bold
 }
 
+.ftcards{
+  border: 5px solid #4d3304;
+  background-color: #ffffff;
+}
+
+.Login{
+  border: 4px solid #4d3304;
+  background-color: #f3ce77;
+  border-radius: 30%;
+
+}
+.Signup{
+  border: 4px solid #4d3304;
+  background-color: #f3ce77;
+  border-radius: 30%;
+
+}
+
+.addFoodTruckForm{
+  border: 4px solid #4d3304;
+  background-color: #f3ce77;
+  border-radius: 30%;
+}
+
+.EditReviewForm{
+  border: 4px solid #4d3304;
+  background-color: #f3ce77;
+  border-radius: 30%;
+}
 
 
 

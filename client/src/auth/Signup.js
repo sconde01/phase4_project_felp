@@ -45,7 +45,7 @@ export const Signup = () => {
   }
 
   return (
-    <Form onSubmit={ handleSubmit }>
+    <Form className="Signup" onSubmit={ handleSubmit }>
       <h1>Sign Up</h1>
 
       <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -59,6 +59,7 @@ export const Signup = () => {
           required={ true }
            />
         <Form.Text className="text-muted">
+          <br/>
           We'll never share your information with anyone else.
         </Form.Text>
       </Form.Group>

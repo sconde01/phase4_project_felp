@@ -10,7 +10,7 @@ export const EditReview = () => {
   const { id } = useParams();
   
   const review = currentUser.reviews?.find(review => review.id === parseInt(id));
-  console.log('review', review)
+  //console.log('review', review)
 
   const initialState = {
     review: review.review
@@ -18,24 +18,6 @@ export const EditReview = () => {
   const [ formData, setFormData ] = useState(initialState);
   const navigate = useNavigate();
   
-
-  //should my route be food_trucks/:id instead of reviews???
-
-//   useEffect(() => {
-//     if(!loggedIn) {
-//       navigate('/login')
-//       }
-// // debugger
-
-//     if(currentUser?.id !== review.user_id) {
-//       navigate('/food_trucks')
-//         }
-//       setFormData({
-//       review: review.review,
-//       })
-//   }, [ loggedIn, currentUser, id, navigate])
-
-
   const handleChange = e => {
     const { name, value } = e.target;
     setFormData({
@@ -64,11 +46,11 @@ export const EditReview = () => {
   }
 
   return (
-    <div>
-    <h1>Edit Review</h1>
-    <Form onSubmit={ handleSubmit }>
+    
+    <Form className="EditReviewForm" onSubmit={ handleSubmit }>
 
       <Form.Group className="mb-3" controlId="formBasicEmail">
+       <h3>Edit Review for <b> { review.food_truck_name }</b> </h3>
         <input
           type="text" 
           name="review"
@@ -76,10 +58,8 @@ export const EditReview = () => {
           value={ formData.review }
           onChange={ handleChange }
         />
-
       <p> You: {currentUser?.username }</p>
         <Form.Text className="text-muted">
-         <br/>
           Your feedback is greatly appreciated and useful...
         </Form.Text>
 
@@ -90,6 +70,6 @@ export const EditReview = () => {
       </Button>
 
     </Form>
-    </div>
+    
   )
 }

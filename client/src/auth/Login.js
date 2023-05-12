@@ -46,10 +46,10 @@ export const Login = () => {
   }
 
   return (
-    <Form onSubmit={ handleSubmit }>
+    <Form className="Login" onSubmit={ handleSubmit }>
     <h1>Log In</h1>
 
-    <Form.Group className="mb-3" controlId="formBasicEmail">
+    <Form.Group className ="mb-3" controlId="formBasicEmail">
       <Form.Label>Username</Form.Label>
       <input
         type="text" 

@@ -23,12 +23,10 @@ export const NavBar = () => {
           <Link to="/user/food_trucks">My Food Trucks</Link>
          </Nav>
         <Navbar.Toggle />
-        <Navbar.Collapse className="justify-content-end">
-          <Navbar.Text>
-            Signed in as: <Link to="/food_trucks/user-reviews">{currentUser.username}</Link>
+          <Navbar.Text className='signedin'>
+            <b>Signed in as:</b> <Link to="/food_trucks/user-reviews">{currentUser.username}</Link>
           </Navbar.Text>
-        </Navbar.Collapse>
-        <Nav className="me-auto">
+        <Nav >
           <Nav.Link href="#" onClick={handleLogoutClick}>Sign Out</Nav.Link>
         </Nav>
       </Container>
