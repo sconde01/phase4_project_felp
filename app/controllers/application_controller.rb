@@ -8,18 +8,14 @@ class ApplicationController < ActionController::API
     User.find_by(id: session[:user_id])
   end
 
-  def logged_in?
-    !!session[:user_id] # two bangs for boolean value true (opposite of opposite)
+  def logged_in
+    !!session[:user_id] # two bangs for boolean value true ("Bang Bang! you're a boolean now!"")
   end
 
   #authorize is used for if someone is logged in, then they are authorized to access
   def authorize
     return render json: { errors: ["Not authorized. Please Login."] }, status: 
-    :unauthorized unless logged_in?
-  end
-
-  def authorized
-    render json: { errors: ["You are already logged in, please log out first."]}, status: :unauthorized if logged_in?
+    :unauthorized unless logged_in
   end
 
   def render_unprocessable_entity_response(exception)

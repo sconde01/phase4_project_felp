@@ -10,11 +10,6 @@ class FoodTrucksController < ApplicationController
     render json: foodtruck
   end
 
-  # all foodtrucks with :n or more reviews
-  # def numbers
-  #   foodtrucks = FoodTruck.all.select { |foodtruck| foodtruck.reviews.length >= params[:n].to_i}
-  #   render json: foodtrucks
-  # end
 
   def create
     # byebug
